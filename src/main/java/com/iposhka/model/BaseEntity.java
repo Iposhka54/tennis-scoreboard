@@ -17,5 +17,5 @@ import java.io.Serializable;
 public abstract class BaseEntity<Key extends Serializable>{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Key key;
+    private Key id;
 }
