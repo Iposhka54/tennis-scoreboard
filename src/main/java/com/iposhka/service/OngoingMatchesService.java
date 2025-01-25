@@ -13,6 +13,15 @@ public class OngoingMatchesService {
     private static final OngoingMatchesService INSTANCE = new OngoingMatchesService();
     private final Map<UUID, OngoingMatch> matches = new ConcurrentHashMap<>();
 
+    public void createMatch(String name1, String name2){
+        OngoingMatch match = OngoingMatch.builder()
+                .id(UUID.randomUUID())
+                .player1(name1)
+                .player2(name2)
+                .build();
+        matches.put(match.getId(), match);
+    }
+
     public static OngoingMatchesService getInstance() {
         return INSTANCE;
     }
