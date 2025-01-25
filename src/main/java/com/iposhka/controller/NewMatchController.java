@@ -1,8 +1,9 @@
 package com.iposhka.controller;
 
+import com.iposhka.dto.PlayerDto;
 import com.iposhka.exception.InvalidDataException;
-import com.iposhka.model.OngoingMatch;
 import com.iposhka.service.OngoingMatchesService;
+import com.iposhka.service.PlayerService;
 import com.iposhka.util.JspHelper;
 import com.iposhka.util.NameFormatter;
 import com.iposhka.util.Validator;
@@ -18,6 +19,7 @@ import java.util.UUID;
 @WebServlet("/new-match")
 public class NewMatchController extends HttpServlet {
     private final OngoingMatchesService ongoingMatchesService = OngoingMatchesService.getInstance();
+    private final PlayerService playerService = PlayerService.getInstance();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher(JspHelper.getPath("new-match")).forward(req, resp);
@@ -36,9 +38,11 @@ public class NewMatchController extends HttpServlet {
             String player1 = NameFormatter.formatName(firstPlayer);
             String player2 = NameFormatter.formatName(secondPlayer);
 
-            //Need createOrGetPlayer method
+            PlayerDto playerFirst = playerService.findOrCreateByName(player1);
+            PlayerDto playerSecond = playerService.findOrCreateByName(player2);
 
-            UUID id = ongoingMatchesService.createMatch(null, null);
+            UUID id = ongoingMatchesService.createMatch(playerFirst, playerSecond);
+
             resp.sendRedirect(req.getContextPath() + "/match-score?uuid=" + id);
         }catch(InvalidDataException e){
             req.setAttribute("error", e.getMessage());

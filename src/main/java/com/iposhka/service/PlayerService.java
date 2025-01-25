@@ -7,15 +7,13 @@ import com.iposhka.repository.PlayerRepository;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
-import java.util.stream.Stream;
-
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class PlayerService {
     private static final PlayerService INSTANCE = new PlayerService();
     private final PlayerRepository playerRepository = PlayerRepository.getInstance();
     private final PlayerMapper playerMapper = PlayerMapper.INSTANCE;
 
-    public PlayerDto findOrCreate(String name){
+    public PlayerDto findOrCreateByName(String name){
         Player player = playerRepository.findByName(name)
                 .orElseGet(() ->
                         playerRepository.save(playerMapper.toEntity(name)));
