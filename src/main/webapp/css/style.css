@@ -125,7 +125,7 @@ footer {
 .welcome-image {
     border-radius: 30px;
     margin-top: 20px;
-    background-image: url('../images/welcome_image.png');
+    background-image: url('../../images/welcome_image.png');
     background-position: center;
     min-height: 50vh;
     background-size: cover;
@@ -162,7 +162,7 @@ footer {
 .new-match-image {
     border-radius: 30px;
     margin: 20px 0;
-    background-image: url('../images/racket.png');
+    background-image: url('../../images/racket.png');
     height: 503px;
     background-size: cover;
     background-position: center;
@@ -221,7 +221,7 @@ footer {
 .current-match-image {
     border-radius: 30px;
     margin-top: 20px;
-    background-image: url('../images/scorekeeper.png');
+    background-image: url('../../images/scorekeeper.png');
     background-position: center;
     min-height: 30vh;
     background-size: cover;

@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <%@include file="jsp/header.jsp"%>
+    <%@include file="WEB-INF/jsp/header.jsp"%>
     <main>
         <div class="container">
             <h1>Welcome to Tennis Scoreboard</h1>
@@ -27,6 +27,6 @@
             </div>
         </div>
     </main>
-    <%@include file="/jsp/footer.jsp"%>
+    <%@include file="WEB-INF/jsp/footer.jsp"%>
 </body>
 </html>
