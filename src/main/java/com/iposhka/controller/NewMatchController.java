@@ -34,7 +34,7 @@ public class NewMatchController extends HttpServlet {
 
             //Need createOrGetPlayer method
 
-            UUID id = ongoingMatchesService.createMatch(firstPlayer, secondPlayer);
+            UUID id = ongoingMatchesService.createMatch(null, null);
             resp.sendRedirect(req.getContextPath() + "/match-score?uuid=" + id);
         }catch(InvalidDataException e){
             req.setAttribute("error", e.getMessage());

@@ -1,5 +1,6 @@
 package com.iposhka.model;
 
+import com.iposhka.dto.PlayerDto;
 import lombok.Builder;
 import lombok.Data;
 
@@ -9,8 +10,8 @@ import java.util.UUID;
 @Builder
 public class OngoingMatch {
     private UUID id;
-    private String player1;
-    private String player2;
+    private PlayerDto player1;
+    private PlayerDto player2;
 
     @Builder.Default
     private Score player1Score = new Score();

@@ -1,5 +1,6 @@
 package com.iposhka.service;
 
+import com.iposhka.dto.PlayerDto;
 import com.iposhka.model.OngoingMatch;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -13,7 +14,7 @@ public class OngoingMatchesService {
     private static final OngoingMatchesService INSTANCE = new OngoingMatchesService();
     private final Map<UUID, OngoingMatch> matches = new ConcurrentHashMap<>();
 
-    public UUID createMatch(String name1, String name2){
+    public UUID createMatch(PlayerDto name1, PlayerDto name2){
         OngoingMatch match = OngoingMatch.builder()
                 .id(UUID.randomUUID())
                 .player1(name1)
