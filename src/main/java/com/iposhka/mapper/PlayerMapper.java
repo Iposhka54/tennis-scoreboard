@@ -12,4 +12,6 @@ public interface PlayerMapper {
     PlayerDto toDto(Player player);
 
     Player toEntity(PlayerDto playerDto);
+
+    Player toEntity(String name);
 }
