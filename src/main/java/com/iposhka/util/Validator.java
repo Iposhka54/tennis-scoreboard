@@ -40,9 +40,9 @@ public class Validator {
         }
     }
 
-    private void ifStrsNullOrEmptyThrowException(String... strs){
+    private static void ifStrsNullOrEmptyThrowException(String... strs){
         for (String str : strs) {
-            if(str == null || str.isBlank()){
+            if(str == null || str.isEmpty()){
                 throw new InvalidDataException(Validator.NAME_CANNOT_BE_EMPTY);
             }
         }

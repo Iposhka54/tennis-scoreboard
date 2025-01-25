@@ -20,6 +20,7 @@ import java.util.UUID;
 public class NewMatchController extends HttpServlet {
     private final OngoingMatchesService ongoingMatchesService = OngoingMatchesService.getInstance();
     private final PlayerService playerService = PlayerService.getInstance();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher(JspHelper.getPath("new-match")).forward(req, resp);

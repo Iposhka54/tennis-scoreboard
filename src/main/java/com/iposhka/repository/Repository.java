@@ -13,5 +13,5 @@ public interface Repository<K extends Serializable, E> {
 
     Optional<E> findById(K id);
 
-    List<E> findAll();
+//    List<E> findAll();
 }
