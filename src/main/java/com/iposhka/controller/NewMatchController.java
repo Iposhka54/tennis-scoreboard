@@ -4,6 +4,7 @@ import com.iposhka.exception.InvalidDataException;
 import com.iposhka.model.OngoingMatch;
 import com.iposhka.service.OngoingMatchesService;
 import com.iposhka.util.JspHelper;
+import com.iposhka.util.NameFormatter;
 import com.iposhka.util.Validator;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -31,6 +32,9 @@ public class NewMatchController extends HttpServlet {
             String secondPlayer = req.getParameter("secondPlayer");
 
             Validator.checkNames(firstPlayer, secondPlayer);
+
+            String player1 = NameFormatter.formatName(firstPlayer);
+            String player2 = NameFormatter.formatName(secondPlayer);
 
             //Need createOrGetPlayer method
 
