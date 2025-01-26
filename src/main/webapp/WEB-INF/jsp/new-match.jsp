@@ -16,8 +16,8 @@
             <div class="new-match-image"></div>
             <div class="form-container center">
                 <form method="post" action="${pageContext.request.contextPath}/new-match">
-                    <c:if test="${not empty requestScope.error}">
-                        <p style="color: red;">${requestScope.error}</p>
+                    <c:if test="${not empty sessionScope.error}">
+                        <p style="color: red;">${sessionScope.error}</p>
                     </c:if>
                     <label class="label-player" for="player1">Player one</label>
                     <input class="input-player" placeholder="Name" type="text" minlength="5" maxlength="16"  title="Enter a name" id="player1" name="firstPlayer" required>

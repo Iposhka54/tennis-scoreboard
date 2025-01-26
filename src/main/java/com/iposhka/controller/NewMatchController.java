@@ -29,7 +29,7 @@ public class NewMatchController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try{
-            req.removeAttribute("error");
+            req.getSession().removeAttribute("error");
 
             String firstPlayer = req.getParameter("firstPlayer");
             String secondPlayer = req.getParameter("secondPlayer");
@@ -46,7 +46,7 @@ public class NewMatchController extends HttpServlet {
 
             resp.sendRedirect(req.getContextPath() + "/match-score?uuid=" + id);
         }catch(InvalidDataException e){
-            req.setAttribute("error", e.getMessage());
+            req.getSession().setAttribute("error", e.getMessage());
             req.getRequestDispatcher(JspHelper.getPath("new-match")).forward(req, resp);
         }
     }

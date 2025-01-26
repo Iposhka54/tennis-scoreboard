@@ -17,8 +17,10 @@ public class ExceptionFilter extends HttpFilter {
         try {
             super.doFilter(req, res, chain);
         }catch (MatchNotFoundException e){
-            req.setAttribute("error", e.getMessage());
-            req.getRequestDispatcher("/new-match").forward(req, res);
+            req.getSession().setAttribute("error", e.getMessage());
+            res.sendRedirect(req.getContextPath() + "/new-match");
+        }catch (Exception e){
+            res.sendRedirect(req.getContextPath());
         }
     }
 }
