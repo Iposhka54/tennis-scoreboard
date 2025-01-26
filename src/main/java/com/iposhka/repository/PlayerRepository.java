@@ -2,7 +2,7 @@ package com.iposhka.repository;
 
 import com.iposhka.exception.DatabaseException;
 import com.iposhka.model.Player;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.NoResultException;
 import org.hibernate.Session;
 
 import java.util.Optional;
@@ -16,12 +16,15 @@ public class PlayerRepository extends BaseRepository<Integer, Player>{
     public Optional<Player> findByName(String name) {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            Player player = session.createQuery("from Player where name = :name", Player.class)
+            Player player = session.createQuery("select p from Player as p where p.name = :name", Player.class)
                     .setParameter("name", name)
                     .getSingleResult();
             return Optional.ofNullable(player);
-        }catch (Exception e) {
-            throw new DatabaseException("Could not find player with name " + name);
+        }catch (NoResultException e){
+            return Optional.empty();
+        }
+        catch (Exception e) {
+            throw new DatabaseException("Problem with database with finding by name");
         }
     }
 

@@ -1,6 +1,5 @@
-package com.iposhka.model;
+package com.iposhka.dto;
 
-import com.iposhka.dto.PlayerDto;
 import lombok.Builder;
 import lombok.Data;
 

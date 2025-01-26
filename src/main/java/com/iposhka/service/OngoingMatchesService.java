@@ -1,7 +1,7 @@
 package com.iposhka.service;
 
 import com.iposhka.dto.PlayerDto;
-import com.iposhka.model.OngoingMatch;
+import com.iposhka.dto.OngoingMatch;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 

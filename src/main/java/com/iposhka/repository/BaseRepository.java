@@ -66,16 +66,16 @@ public abstract class BaseRepository<K extends Serializable, E extends BaseEntit
         }
     }
 
-//    @Override
-//    public List<E> findAll() {
-//        try (Session session = sessionFactory.openSession()) {
-//            session.beginTransaction();
-//            CriteriaQuery<E> criteria = session.getCriteriaBuilder().createQuery(entityClass);
-//            criteria.from(entityClass);
-//            return session.createQuery(criteria)
-//                    .getResultList();
-//        }catch (Exception e) {
-//            throw new DatabaseException("Some problem with finding in database");
-//        }
-//}
+    @Override
+    public List<E> findAll() {
+        try (Session session = sessionFactory.openSession()) {
+            session.beginTransaction();
+            CriteriaQuery<E> criteria = session.getCriteriaBuilder().createQuery(entityClass);
+            criteria.from(entityClass);
+            return session.createQuery(criteria)
+                    .getResultList();
+        }catch (Exception e) {
+            throw new DatabaseException("Some problem with finding in database");
+        }
+}
 }

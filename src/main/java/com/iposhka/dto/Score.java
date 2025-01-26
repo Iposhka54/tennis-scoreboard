@@ -1,4 +1,4 @@
-package com.iposhka.model;
+package com.iposhka.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
