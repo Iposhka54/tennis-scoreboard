@@ -33,6 +33,10 @@ public class OngoingMatchesService {
         return match;
     }
 
+    public void put(OngoingMatch match) {
+        matches.put(match.getId(), match);
+    }
+
     public static OngoingMatchesService getInstance() {
         return INSTANCE;
     }
