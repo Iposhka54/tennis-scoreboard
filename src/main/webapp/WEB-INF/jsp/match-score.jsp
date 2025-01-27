@@ -29,7 +29,11 @@
                     <td class="table-text">${requestScope.match.player1Score.games}</td>
                     <td class="table-text">${requestScope.match.player1Score.points}</td>
                     <td class="table-text">
-                        <div class="score-btn">Score</div>
+                        <form action="${pageContext.request.contextPath}/match-score" method="post">
+                            <input type="hidden" name="uuid" value="${requestScope.uuid}"/>
+                            <input type="hidden" name="playerId" value="${requestScope.match.player1.id}"/>
+                            <button type="submit" class="score-btn">Score</button>
+                        </form>
                     </td>
                 </tr>
                 <tr class="player2">
@@ -38,7 +42,11 @@
                     <td class="table-text">${requestScope.match.player2Score.games}</td>
                     <td class="table-text">${requestScope.match.player2Score.points}</td>
                     <td class="table-text">
-                        <div class="score-btn">Score</div>
+                        <form action="${pageContext.request.contextPath}/match-score" method="post">
+                            <input type="hidden" name="uuid" value="${requestScope.uuid}"/>
+                            <input type="hidden" name="playerId" value="${requestScope.match.player1.id}"/>
+                            <button type="submit" class="score-btn">Score</button>
+                        </form>
                     </td>
                 </tr>
                 </tbody>
