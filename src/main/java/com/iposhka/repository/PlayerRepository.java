@@ -21,6 +21,7 @@ public class PlayerRepository extends BaseRepository<Integer, Player>{
             Player player = session.createQuery("select p from Player as p where p.name = :name", Player.class)
                     .setParameter("name", name)
                     .getSingleResult();
+            session.getTransaction().commit();
             return Optional.ofNullable(player);
         }catch (NoResultException e){
             return Optional.empty();

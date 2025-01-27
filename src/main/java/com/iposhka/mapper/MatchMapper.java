@@ -4,6 +4,7 @@ import com.iposhka.dto.MatchDto;
 import com.iposhka.dto.OngoingMatch;
 import com.iposhka.model.Match;
 import com.iposhka.model.Player;
+import com.iposhka.service.PlayerService;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
@@ -12,15 +13,14 @@ import org.mapstruct.factory.Mappers;
 @Mapper(uses = PlayerMapper.class)
 public interface MatchMapper {
     MatchMapper INSTANCE = Mappers.getMapper(MatchMapper.class);
+    PlayerService playerService = PlayerService.getInstance();
 
-    @Mapping(target = "id", ignore = true)
     MatchDto toDto(Match match);
 
-    @Mapping(target = "id", ignore = true)
     @Mapping(target = "player1", source = "player1")
     @Mapping(target = "player2", source = "player2")
     @Mapping(target = "winner",source = ".", qualifiedByName = "determineWinner")
-    MatchDto toDto(OngoingMatch match);
+    Match toEntity(OngoingMatch match);
 
     @Named("determineWinner")
     default Player determineWinner(OngoingMatch match){

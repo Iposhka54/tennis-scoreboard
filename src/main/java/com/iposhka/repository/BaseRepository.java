@@ -60,6 +60,7 @@ public abstract class BaseRepository<K extends Serializable, E extends BaseEntit
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
             E e = session.get(entityClass, id);
+            session.getTransaction().commit();
             return Optional.ofNullable(e);
         } catch (Exception e) {
             throw new DatabaseException("Some problem with finding in database");
@@ -72,8 +73,11 @@ public abstract class BaseRepository<K extends Serializable, E extends BaseEntit
             session.beginTransaction();
             CriteriaQuery<E> criteria = session.getCriteriaBuilder().createQuery(entityClass);
             criteria.from(entityClass);
-            return session.createQuery(criteria)
+            List<E> resultList = session.createQuery(criteria)
                     .getResultList();
+            session.getTransaction().commit();
+
+            return resultList;
         }catch (Exception e) {
             throw new DatabaseException("Some problem with finding in database");
         }
