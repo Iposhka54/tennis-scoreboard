@@ -29,6 +29,9 @@ public class MatchScoreController extends HttpServlet {
         OngoingMatch match = ongoingMatchesService.findMatchByUUID(uuid);
         ongoingMatchesService.put(match);
 
+        boolean isTiebreak = matchScoreCalculationService.isTieBreak(match.getPlayer1Score(), match.getPlayer2Score());
+        req.setAttribute("isTiebreak", isTiebreak);
+
         req.setAttribute("match", match);
         req.getRequestDispatcher(JspHelper.getPath("match-score")).forward(req, resp);
     }

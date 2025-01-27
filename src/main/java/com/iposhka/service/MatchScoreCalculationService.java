@@ -8,10 +8,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class MatchScoreCalculationService {
     private static final MatchScoreCalculationService INSTANCE = new MatchScoreCalculationService();
-    private static final int POINTS_TO_WIN_GAME = 5;
+    private static final int POINTS_TO_WIN_GAME = 4;
     private static final int GAMES_TO_WIN_SET = 6;
     private static final int TIEBREAK_POINTS_TO_WIN = 7;
     private static final int MIN_ADVANTAGE = 2;
+    private static final int SETS_TO_WIN = 2;
 
     public void calculateScore(OngoingMatch match, Integer winnerId){
         Score winnerScore =  match.getPlayer1().getId().equals(winnerId)
@@ -34,7 +35,12 @@ public class MatchScoreCalculationService {
 
 
     public boolean isMatchOver(OngoingMatch match){
-        return match.getPlayer1Score().getSets() > MIN_ADVANTAGE || match.getPlayer2Score().getSets() > MIN_ADVANTAGE;
+        return match.getPlayer1Score().getSets() == SETS_TO_WIN
+                || match.getPlayer2Score().getSets() == SETS_TO_WIN;
+    }
+
+    public boolean isTieBreak(Score player1, Score player2) {
+        return player1.getGames() == GAMES_TO_WIN_SET && player2.getGames() == GAMES_TO_WIN_SET;
     }
 
     private void checkGameResult(Score winnerScore, Score opponentScore){
@@ -54,8 +60,7 @@ public class MatchScoreCalculationService {
     }
 
     private void checkTieBreak(Score winnerScore, Score opponentScore) {
-        if(winnerScore.getPoints() >= TIEBREAK_POINTS_TO_WIN
-        && winnerScore.getPoints() - opponentScore.getPoints() >= MIN_ADVANTAGE){
+        if (winnerScore.getPoints() >= TIEBREAK_POINTS_TO_WIN) {
             winnerScore.wonSet();
             clearGames(winnerScore, opponentScore);
             clearPoints(winnerScore, opponentScore);
@@ -72,10 +77,6 @@ public class MatchScoreCalculationService {
         for (Score score : scores) {
             score.clearPoints();
         }
-    }
-
-    private boolean isTieBreak(Score player1, Score player2) {
-        return player1.getGames() == GAMES_TO_WIN_SET && player2.getGames() == GAMES_TO_WIN_SET;
     }
 
     public static MatchScoreCalculationService getInstance(){

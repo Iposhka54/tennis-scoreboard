@@ -1,3 +1,5 @@
+<%@ page import="com.iposhka.util.ScoreFormatter" %>
+<%@ page import="com.iposhka.dto.OngoingMatch" %>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <html>
 <head>
@@ -27,7 +29,13 @@
                     <td class="table-text">${requestScope.match.player1.name}</td>
                     <td class="table-text">${requestScope.match.player1Score.sets}</td>
                     <td class="table-text">${requestScope.match.player1Score.games}</td>
-                    <td class="table-text">${requestScope.match.player1Score.points}</td>
+                    <td class="table-text">
+                        <%= ScoreFormatter.getFormattedPoints(
+                                ((OngoingMatch)request.getAttribute("match")).getPlayer1Score().getPoints(),
+                                ((OngoingMatch)request.getAttribute("match")).getPlayer2Score().getPoints(),
+                                (Boolean) request.getAttribute("isTiebreak"))
+                        %>
+                    </td>
                     <td class="table-text">
                         <form action="${pageContext.request.contextPath}/match-score" method="post">
                             <input type="hidden" name="uuid" value="${requestScope.match.id}"/>
@@ -40,7 +48,13 @@
                     <td class="table-text">${requestScope.match.player2.name}</td>
                     <td class="table-text">${requestScope.match.player2Score.sets}</td>
                     <td class="table-text">${requestScope.match.player2Score.games}</td>
-                    <td class="table-text">${requestScope.match.player2Score.points}</td>
+                    <td class="table-text">
+                        <%= ScoreFormatter.getFormattedPoints(
+                                ((OngoingMatch)request.getAttribute("match")).getPlayer2Score().getPoints(),
+                                ((OngoingMatch)request.getAttribute("match")).getPlayer1Score().getPoints(),
+                                (Boolean) request.getAttribute("isTiebreak"))
+                        %>
+                    </td>
                     <td class="table-text">
                         <form action="${pageContext.request.contextPath}/match-score" method="post">
                             <input type="hidden" name="uuid" value="${requestScope.match.id}"/>
