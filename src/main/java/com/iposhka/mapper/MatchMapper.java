@@ -10,12 +10,16 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
+
 @Mapper(uses = PlayerMapper.class)
 public interface MatchMapper {
     MatchMapper INSTANCE = Mappers.getMapper(MatchMapper.class);
     PlayerService playerService = PlayerService.getInstance();
 
     MatchDto toDto(Match match);
+
+    List<MatchDto> toDto(List<Match> matches);
 
     @Mapping(target = "player1", source = "player1")
     @Mapping(target = "player2", source = "player2")
