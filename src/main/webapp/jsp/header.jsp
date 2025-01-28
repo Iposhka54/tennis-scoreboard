@@ -9,8 +9,8 @@
         </div>
         <div>
             <nav class="nav-links">
-                <a class="nav-link" href="/">Home</a>
-                <a class="nav-link" href="${pageContext.request.contextPath}/matches?page=1&filter_by_player_name=">Matches</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/">Home</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/matches?page=1">Matches</a>
             </nav>
         </div>
     </section>
