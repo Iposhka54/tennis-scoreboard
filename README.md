@@ -104,7 +104,7 @@ Interface:
 
 1. Clone the repository:
    ```
-   git clone https://github.com/VladislavLevchikIsAProger/tennis_scoreboard.git
+   git clone https://github.com/Iposhka54/tennis-scoreboard.git
    ```
 
 2. Open Intellij IDEA and in Main Menu -> Open select the folder you have decloned.
