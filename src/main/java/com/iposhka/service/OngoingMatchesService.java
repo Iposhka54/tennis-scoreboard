@@ -1,7 +1,8 @@
 package com.iposhka.service;
 
 import com.iposhka.dto.PlayerDto;
-import com.iposhka.model.OngoingMatch;
+import com.iposhka.dto.OngoingMatch;
+import com.iposhka.exception.MatchNotFoundException;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
@@ -22,6 +23,18 @@ public class OngoingMatchesService {
                 .build();
         matches.put(match.getId(), match);
         return match.getId();
+    }
+
+    public OngoingMatch findMatchByUUID(UUID uuid){
+        OngoingMatch match = matches.get(uuid);
+        if(match == null){
+            throw new MatchNotFoundException("Match with " + uuid.toString() + " not found");
+        }
+        return match;
+    }
+
+    public void put(OngoingMatch match) {
+        matches.put(match.getId(), match);
     }
 
     public static OngoingMatchesService getInstance() {

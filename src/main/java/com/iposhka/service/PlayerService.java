@@ -7,7 +7,7 @@ import com.iposhka.repository.PlayerRepository;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
-//@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class PlayerService {
     private static final PlayerService INSTANCE = new PlayerService();
     private final PlayerRepository playerRepository = PlayerRepository.getInstance();

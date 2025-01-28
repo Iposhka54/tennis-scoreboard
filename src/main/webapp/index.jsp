@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 </head>
 <body>
-    <%@include file="WEB-INF/jsp/header.jsp"%>
+    <%@include file="/jsp/header.jsp"%>
     <main>
         <div class="container">
             <h1>Welcome to Tennis Scoreboard</h1>
@@ -27,6 +27,6 @@
             </div>
         </div>
     </main>
-    <%@include file="WEB-INF/jsp/footer.jsp"%>
+    <%@include file="/jsp/footer.jsp"%>
 </body>
 </html>
