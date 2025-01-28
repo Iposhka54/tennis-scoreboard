@@ -17,7 +17,6 @@ public class PlayerService {
         Player player = playerRepository.findByName(name)
                 .orElseGet(() ->
                         playerRepository.save(playerMapper.toEntity(name)));
-        System.out.println(player);
         return playerMapper.toDto(player);
     }
 

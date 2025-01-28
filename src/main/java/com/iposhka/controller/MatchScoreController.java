@@ -1,6 +1,5 @@
 package com.iposhka.controller;
 
-import com.iposhka.dto.MatchDto;
 import com.iposhka.dto.OngoingMatch;
 import com.iposhka.service.FinishedMatchesPersistenceService;
 import com.iposhka.service.MatchScoreCalculationService;
@@ -47,8 +46,9 @@ public class MatchScoreController extends HttpServlet {
         matchScoreCalculationService.calculateScore(match, winnerId);
 
         if(matchScoreCalculationService.isMatchOver(match)){
-            MatchDto finishedMatch = finishedMatchesPersistenceService.save(match);
-            //redirect on matches
+            finishedMatchesPersistenceService.save(match);
+            req.setAttribute("match", match);
+            req.getRequestDispatcher(JspHelper.getPath("final-score")).forward(req, resp);
         }
         else{
             ongoingMatchesService.put(match);
