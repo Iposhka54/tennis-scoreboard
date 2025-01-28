@@ -8,11 +8,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class MatchScoreCalculationService {
     private static final MatchScoreCalculationService INSTANCE = new MatchScoreCalculationService();
-    private static final int POINTS_TO_WIN_GAME = 1;
-    private static final int GAMES_TO_WIN_SET = 1;
+    private static final int POINTS_TO_WIN_GAME = 4;
+    private static final int GAMES_TO_WIN_SET = 6;
     private static final int TIEBREAK_POINTS_TO_WIN = 7;
     private static final int MIN_ADVANTAGE = 2;
-    private static final int SETS_TO_WIN = 1;
+    private static final int SETS_TO_WIN = 2;
 
     public void calculateScore(OngoingMatch match, Integer winnerId){
         Score winnerScore =  match.getPlayer1().getId().equals(winnerId)
